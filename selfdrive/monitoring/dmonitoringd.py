@@ -14,7 +14,7 @@ def dmonitoringd_thread():
                             'carControl'], poll='driverStateV2')
 
   DM = DriverMonitoring(rhd_saved=params.get_bool("IsRhdDetected"), always_on=params.get_bool("AlwaysOnDM"))
-  demo_mode=False
+  demo_mode=True
 
   # 20Hz <- dmonitoringmodeld
   while True:

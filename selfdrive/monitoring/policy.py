@@ -351,6 +351,8 @@ class DriverMonitoring:
     elif self.awareness <= self.threshold_alert_1:
       self.alert_level = AlertLevel.one
 
+      self.awareness = 1.0
+
   def get_state_packet(self, valid=True):
     # build driverMonitoringState packet
     dat = messaging.new_message('driverMonitoringState', valid=valid)

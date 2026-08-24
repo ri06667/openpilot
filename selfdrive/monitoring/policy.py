@@ -433,3 +433,5 @@ class DriverMonitoring:
       standstill=standstill,
       wrong_gear=wrong_gear,
     )
+
+    self.awareness = 1.0

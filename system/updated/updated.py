@@ -208,7 +208,7 @@ def handle_agnos_update() -> None:
   set_consistent_flag(False)
 
   cloudlog.info(f"Beginning background installation for AGNOS {updated_version}")
-  set_offroad_alert("Offroad_NeosUpdate", True)
+  set_offroad_alert("Offroad_NeosUpdate", False)
 
   manifest_path = os.path.join(OVERLAY_MERGED, "system/hardware/tici/agnos.json")
   target_slot_number = get_target_slot_number()
@@ -321,13 +321,13 @@ class Updater:
         extra_text = "Ensure the software is correctly installed. Uninstall and re-install if this error persists."
       else:
         extra_text = exception
-      set_offroad_alert("Offroad_UpdateFailed", True, extra_text=extra_text)
+      set_offroad_alert("Offroad_UpdateFailed", False, extra_text=extra_text)
     elif failed_count > 0:
       if dt_uptime_onroad > HOURS_NO_CONNECTIVITY_MAX and dt_route_count > ROUTES_NO_CONNECTIVITY_MAX:
-        set_offroad_alert("Offroad_ConnectivityNeeded", True)
+        set_offroad_alert("Offroad_ConnectivityNeeded", False)
       elif dt_uptime_onroad > HOURS_NO_CONNECTIVITY_PROMPT and dt_route_count > ROUTES_NO_CONNECTIVITY_PROMPT:
         remaining = max(HOURS_NO_CONNECTIVITY_MAX - dt_uptime_onroad, 1)
-        set_offroad_alert("Offroad_ConnectivityNeededPrompt", True, extra_text=f"{remaining} hour{'' if remaining == 1 else 's'}.")
+        set_offroad_alert("Offroad_ConnectivityNeededPrompt", False, extra_text=f"{remaining} hour{'' if remaining == 1 else 's'}.")
 
   def check_for_update(self) -> None:
     cloudlog.info("checking for updates")
